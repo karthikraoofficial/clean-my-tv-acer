@@ -5,7 +5,7 @@ A ticket moves to **Ready** when every ticket in its `Blocked by:` line is Done.
 
 | Backlog | Ready | In progress | Done |
 |---|---|---|---|
-| 03 Backup and baseline (← 02) | 02 Connect and probe (needs the owner at the TV) | 01 Prerequisites and workspace | |
+| 03 Backup and baseline (← 02) | 02 Connect and probe (needs the owner at the TV) | | 01 Prerequisites and workspace (e1d7da6) |
 | 04 Final list approved (← 02) | | | |
 | 05 Debloat in batches (← 03, 04) | | | |
 | 06 Launcher (← 01, 05) | | | |
