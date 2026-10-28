@@ -55,7 +55,8 @@ function Pkgs([string]$flags) {
     if ($null -eq $o) { return $null }
     return @($o | Where-Object { $_ -like 'package:*' } | ForEach-Object { $_.Substring(8).Trim() })
 }
-function Resumed { (Shell 'dumpsys activity activities | grep -E "topResumedActivity|mResumedActivity|mFocusedApp"') -join "`n" }
+# Single quotes for the TV's shell: Windows PowerShell 5.1 strips inner double quotes from native arguments.
+function Resumed { (Shell 'dumpsys activity activities | grep -E ''topResumedActivity|mResumedActivity|mFocusedApp''') -join "`n" }
 
 Write-Host "== health check [$Label] on $TvHost =="
 $all = Pkgs ''; $enabled = Pkgs '-e'; $third = Pkgs '-3'
