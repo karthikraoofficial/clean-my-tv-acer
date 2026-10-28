@@ -1,47 +1,50 @@
-# DRAFT: approved list for Acer AR43GR2851VQD. NOT APPROVED YET (ticket 04).
-# Source: upstream examples/acer-ar55ar2851udpro/debloat.txt (AR55, SCBC R4, Realtek rtd2851m, Android TV 14,
-# build UKR1.260308), adjusted with the owner's answers of 2026-10-28. Discovery (ticket 02) may add lines
-# to B4 and must confirm every line exists on this TV.
+# DRAFT v2: approved list for Acer AR43GR2851VQD = Acer R4G (MOKA R4_GTV, Google TV 14, build UKR1.260308/5597)
+# NOT APPROVED YET (ticket 04). Re-planned 2026-10-28 after the probe: lasting debloat only (owner's choice).
+#
+# Why short: on R4G firmware com.android.tv.settings/.system.FallbackHome runs SetPmodServiceJob at every COLD
+# boot (power cut, plug pulled; not standby) and re-enables a hard-coded list of ~60 packages
+# (upstream docs/devices/acer-r4g.md). Disabling those lasts only until the next cold boot, so they are left
+# out (see the end of this header). This list holds only:
+#   [P] packages the R4G owner saw STAY disabled across cold boots, and
+#   [?] packages not on either list in the note. They are verified by a cold boot after B2; any that comes
+#       back is removed from the applied list and moved to the "comes back" note below.
 #
 # Applied one batch at a time by appending a section to artefacts/acer-debloat.txt (ADR 0003).
-# Disable only (pm disable-user --user 0). Undo: cleanyourtv\tools\restore.ps1 artefacts\acer-debloat.txt
+# Disable only (pm disable-user --user 0). Undo (Google TV: pass the stock launcher):
+#   powershell -ExecutionPolicy Bypass -File cleanyourtv\tools\restore.ps1 -TvHost 192.168.1.162 artefacts\acer-debloat.txt -Stock com.google.android.apps.tv.launcherx
 #
-# KEPT on the owner's answers: com.google.android.youtube.tv (YouTube, the remote's YouTube key),
-#   com.google.android.youtube.tvmusic (YouTube Music), com.apps.function.audiolink (Audio Link),
-#   com.google.android.marvin.talkback (TalkBack: owner unsure, so kept).
-# KEPT as must-keep: Play Store/Services/GSF, katniss, mediashell, tvlauncher, setupwraith, partnercustomizer,
-#   passthrough, livetv, atv, dtv, tvmidware, OTA (ota, authota), the key handlers, every installed app.
-# NOT TOUCHED: com.apps.factory.ui, com.realtek.factorytools (never started), com.apps.biz.ds, com.apps.biz.mt,
-#   com.seraphic.hbbtv.app, com.apps.usbmediaplayer.
+# MUST STAY ENABLED on this set: com.google.android.apps.tv.launcherx (stock Home: disabling it made Home
+#   black after a power cut on the R4G), com.google.android.tungsten.setupwraith (owns a saved Wi-Fi network
+#   here; disabling deletes it), com.android.tv.settings, Play (vending, gms, gsf), katniss (mic),
+#   mediashell (Cast), com.realtek.tv.passthrough (HDMI/AV/VGA/DP), com.realtek.tv (Live TV app),
+#   com.realtek.dtv / tv.atv / tv.atsc / tv.isdb / dtmb (tuner inputs), com.mk.service.tvmidware,
+#   com.realtek.leanbacklauncher.partnercustomizer, key handlers (com.realtek.keyinterceptserver,
+#   com.realtek.android.globalkeyhandler, com.apps.android.globalkeyhandler, com.apps.smartkey,
+#   com.apps.virtualkey, com.mk.tv.fivekey, com.apps.bluetoothremote, com.google.android.tv.remote.service,
+#   com.google.android.presetup.bluetoothpair), OTA (com.apps.ota, com.apps.authota, com.realsil.ota,
+#   com.google.android.tv.dfuservice), keyboard com.google.android.inputmethod.latin, every installed app.
+# KEPT on the owner's answers: YouTube, YouTube Music, Audio Link, TalkBack, JioCinema (com.jio.media.stb.ondemand).
+# KEPT as unclear: com.mk.tv.systemserver (system UID, purpose unknown), com.apps.plugins (battery receiver),
+#   com.realtek.display.monitor, com.realtek.media.notification, com.apps.biz.mt, com.apps.biz.ds.
+# NOT TOUCHED, never started: com.apps.factory.ui, com.realtek.factorytools.
+# ALREADY DISABLED before this list: com.android.dreams.basic (Colors screensaver); the record keeps it disabled.
+#
+# COMES BACK at every cold boot, so NOT listed (owner chose a lasting debloat). Of these, the ones with an icon
+# are hidden from the CleanYourTV grid instead (hidden_apps in config.xml):
+#   com.apps.function.gdpr, com.google.android.feedback, com.google.android.play.games [hidden],
+#   com.mk.tv.meeting.service, com.mk.tv.timeclock [hidden], com.apps.tvmanager [hidden], com.apps.esticker,
+#   com.apps.esticker3, com.apps.scast, com.creative.fastscreen.tv [hidden], com.google.android.apps.tv.dreamx.
 
-# === B1: telemetry and ad services (6) ===
-com.apps.function.gdpr                       # SCBC data-consent agent
-com.google.android.feedback                  # Google feedback reporter
-com.android.tv.feedbackconsent               # feedback consent
-com.android.adservices.api                   # Android ad services
-com.android.ondevicepersonalization.services # on-device ad personalisation
-com.android.federatedcompute.services        # federated compute for personalisation
+# === B1: ad services and telemetry (6) ===
+com.android.adservices.api                   # [?] Android ad services (Privacy Sandbox)
+com.android.ondevicepersonalization.services # [?] on-device ad personalisation
+com.android.federatedcompute.services        # [?] federated compute for personalisation
+com.android.tv.feedbackconsent               # [P] feedback/bug-report consent collector (privacy.py: telemetry)
+com.google.android.partnersetup              # [?] Google partner setup, RLZ attribution pings (privacy.py: telemetry)
+android.autoinstalls.config.scbc.device      # [P] Play auto-installs of partner apps
 
-# === B2: ads, recommendation rows, demo (7) ===
-com.apps.mk.wd                               # boot receiver with ClickAd/ClickApp/ClickChannel
-android.autoinstalls.config.scbc.device      # Play auto-installs of partner apps
-com.google.android.tvrecommendations         # sponsored and recommendation rows on the stock Home
-com.apps.eshow                               # in-store demo / promo
-com.apps.esticker                            # demo sticker overlay
-com.mk.tv.meeting.service                    # digital-signage service
-com.apps.tvmanager                           # TV manager / cleaner
-
-# === B3: not needed on this TV (9) ===
-com.android.healthconnect.controller         # Health Connect
-com.android.health.connect.backuprestore     # Health Connect backup
-com.apps.wifihotspot                         # TV as a Wi-Fi hotspot
-com.mk.tv.timeclock                          # world clock
-com.google.android.play.games                 # Play Games
-com.google.android.videos                    # Play Movies & TV (owner: disable)
-com.mk.tv.networkspeed                       # network speed test
-com.android.dreams.basic                     # "Colors" screensaver (owner: disable; Backdrop stays)
-com.google.android.partnersetup              # Google partner setup / RLZ: last in B3, Play Store checked after
-
-# === B4: screen mirroring (owner uses only Chromecast) + discovery extras (to be filled) ===
-com.creative.fastscreen.tv                   # FastCast Miracast receiver
-com.apps.scast                               # SCast casting receiver
+# === B2: ad-click service and unused features (4) ===
+com.apps.mk.wd                               # [P] boot receiver with ClickAd/ClickApp/ClickChannel/ClickVideo activities
+com.apps.wifihotspot                         # [P] TV as a Wi-Fi hotspot
+com.android.healthconnect.controller         # [?] Health Connect
+com.android.health.connect.backuprestore     # [?] Health Connect backup

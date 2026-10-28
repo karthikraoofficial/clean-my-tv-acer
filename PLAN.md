@@ -4,6 +4,19 @@
 
 ## Updates since approval (2026-10-28)
 
+### _(Updated)_ Re-plan for the Acer R4G (Google TV): this overrides the AR55 details below
+
+The probe (ticket 02) showed model `R4G`, device `R4_GTV`, fingerprint `ACER/ACER_NFF/R4_GTV:14/UKR1.260308/5597`, which is exactly the TV in upstream `docs/devices/acer-r4g.md`. The owner chose **a lasting debloat plus the launcher**. Changes per phase:
+
+| Phase | Change |
+|---|---|
+| 1 Connect | Pairing wasn't needed: `_adb._tcp` on 5555 was open, and `tv.py` connected directly. Wireless debugging also listens (46379), so close both in Phase 7. |
+| 3 List | `artefacts/acer-debloat-final.txt` **v2**: 10 packages, B1 (6) + B2 (4), only [P] persistent or [?] unverified ones (ADR 0004). Boot-reset junk is not listed. |
+| 4 Debloat | After B2: a **cold boot**, then `check.py`. Any [?] package that returned is dropped. Restore takes `-Stock com.google.android.apps.tv.launcherx`. |
+| 5 Launcher | `stock_home_redirect = com.google.android.apps.tv.launcherx`; `live_tv_package = com.realtek.tv`; `hidden_apps` = com.realtek.tv, play.games, mk.tv.timeclock, apps.tvmanager, creative.fastscreen.tv. launcherx and setupwraith are **never** disabled (setupwraith owns a saved Wi-Fi network). Build with `-StockLauncher none -HomeKeyService`. Upstream #1121 makes the redirect work at boot and on Home, but not from an HDMI input. |
+| Health check | The must-keep set now uses this TV's names: `com.realtek.tv.passthrough` (HDMI/AV), `com.realtek.tv` (Live TV), `com.realtek.dtv`/`tv.atv`, launcherx, setupwraith, the OTA packages, and the key handlers. |
+| Review table below | Applies to the AR55. For this TV the list is draft v2. FastCast and SCast come back at every boot, so they're hidden rather than disabled. Play Movies isn't installed; the Colors screensaver was already disabled. |
+
 - **Owner's answers recorded** in the PRD (`.scratch/acer-tv-cleanup/spec.md`), "Decisions from the owner". In short:
   - Dock: 7 slots (YouTube, Netflix, Prime Video, JioHotstar, Crunchyroll, Spotify, Sony LIV), with Browsehere first in the grid.
   - Keep: Assistant, OTA, Audio Link, YouTube Music, TalkBack.

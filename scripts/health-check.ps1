@@ -20,23 +20,30 @@ $shots = Join-Path $P 'artefacts\shots'
 if (-not $List) { $List = Join-Path $P 'artefacts\acer-debloat.txt' }
 $env:TV_HOST = $TvHost
 
-# Must be installed AND enabled. Missing counts as a failure: these exist on the Acer R4 platform.
+# Must be installed AND enabled. Missing counts as a failure: all present on this TV (Acer R4G, discovery
+# 2026-10-28, artefacts/lists/packages-all.txt).
 $required = @(
     'com.android.vending', 'com.google.android.gms', 'com.google.android.gsf',   # Play
     'com.google.android.katniss',                                                 # voice / mic button
     'com.google.android.apps.mediashell',                                         # Chromecast
-    'com.google.android.tvlauncher',                                              # stock Home (ADR 0001)
+    'com.google.android.apps.tv.launcherx',                                       # stock Home (ADR 0001)
+    'com.google.android.tungsten.setupwraith',                                    # owns a saved Wi-Fi network
     'com.android.tv.settings', 'com.android.systemui',                            # Settings, system UI
-    'com.apps.passthrough', 'com.apps.livetv'                                     # HDMI/AV, Live TV
+    'com.realtek.tv.passthrough', 'com.realtek.tv',                               # HDMI/AV inputs, Live TV app
+    'com.realtek.dtv', 'com.realtek.tv.atv', 'com.mk.service.tvmidware',          # tuner inputs, TV middleware
+    'com.apps.ota', 'com.apps.authota', 'com.realsil.ota', 'com.google.android.tv.dfuservice',   # OTA
+    'com.google.android.inputmethod.latin',                                       # keyboard
+    'com.realtek.leanbacklauncher.partnercustomizer',                             # Inputs button
+    'com.realtek.keyinterceptserver', 'com.realtek.android.globalkeyhandler',     # remote keys
+    'com.apps.android.globalkeyhandler', 'com.apps.smartkey', 'com.apps.virtualkey', 'com.mk.tv.fivekey',
+    'com.apps.bluetoothremote', 'com.google.android.tv.remote.service', 'com.google.android.presetup.bluetoothpair',
+    'com.google.android.youtube.tv', 'com.google.android.youtube.tvmusic',        # owner's apps (system-installed)
+    'com.netflix.ninja', 'com.amazon.amazonvideo.livingroom',
+    'com.apps.function.audiolink', 'com.google.android.marvin.talkback'          # kept on the owner's answers
 ) + $ExtraMustKeep
-# Must stay enabled IF installed (names from the Acer AR55 notes; this TV may lack some).
+# Must stay enabled IF installed.
 $ifPresent = @(
-    'com.google.android.tungsten.setupwraith', 'com.apps.atv', 'com.apps.dtv', 'com.mk.service.tvmidware',
-    'com.apps.ota', 'com.apps.authota', 'com.apps.sys', 'com.apps.smartmenu',
-    'com.realtek.leanbacklauncher.partnercustomizer', 'com.apps.smartkey', 'com.apps.virtualkey',
-    'com.mk.tv.fivekey', 'com.realtek.keyinterceptserver', 'com.realtek.android.globalkeyhandler',
-    'com.apps.bluetoothremote', 'com.google.android.youtube.tv', 'com.google.android.youtube.tvmusic',
-    'com.apps.function.audiolink', 'com.google.android.marvin.talkback', 'com.gathin.tvhome'
+    'com.realtek.tv.atsc', 'com.realtek.tv.isdb', 'com.realtek.dtmb', 'com.netflix.tokenmanager', 'com.gathin.tvhome'
 )
 
 $fail = 0
@@ -77,7 +84,7 @@ if (Test-Path $List) {
 # 3. Home answers
 $null = Shell 'input keyevent KEYCODE_HOME'; Start-Sleep -Seconds 3
 $r = Resumed
-if ($r -match 'com\.gathin\.tvhome|com\.google\.android\.tvlauncher') { Pass "Home is on screen ($([regex]::Match($r, '(com\.gathin\.tvhome|com\.google\.android\.tvlauncher)[^\s}]*').Value))" }
+if ($r -match 'com\.gathin\.tvhome|com\.google\.android\.apps\.tv\.launcherx') { Pass "Home is on screen ($([regex]::Match($r, '(com\.gathin\.tvhome|com\.google\.android\.apps\.tv\.launcherx)[^\s}]*').Value))" }
 else { Fail "Home did not come up after HOME: $r" }
 & $py -I $tv --screenshot (Join-Path $shots "$Label-home.png") 2>$null | Out-Null
 

@@ -1,5 +1,8 @@
 # Clean My TV: Acer AR43GR2851VQD
 
+The TV is an **Acer R4G** (MOKA `R4_GTV`, **Google TV** 14, build `UKR1.260308/5597`); see upstream
+`docs/devices/acer-r4g.md` and ADR 0004.
+
 Debloat an Acer Android TV and put the CleanYourTV launcher on Home, using the cloned repo in
 `cleanyourtv/` (upstream `github.com/Gathin23/cleanyourtv`). The plan is `PLAN.md`; the runbook,
 once written, is `RUNBOOK.md`.
@@ -9,8 +12,10 @@ once written, is `RUNBOOK.md`.
 - Only `pm disable-user --user 0`. Never `pm uninstall`, never `pm clear`, no root, nothing flashed.
 - Back up first. The restore record in `~\.cleanyourtv\` must exist before the first package is
   disabled; copy it to `artefacts\records\` after every batch.
-- Never leave the TV without a working Home. No `FORCE_HOME`, no `FORCE_SETUPWRAITH`. The stock
-  launcher `com.google.android.tvlauncher` stays enabled on this platform (ADR 0001).
+- Never leave the TV without a working Home. No `FORCE_HOME`, no `FORCE_SETUPWRAITH`. Never disable
+  `com.google.android.apps.tv.launcherx` or `com.google.android.tungsten.setupwraith`: the firmware
+  re-enables setupwraith at every cold boot and Home goes black, and setupwraith owns a saved Wi-Fi network (ADR 0001).
+- Only list packages that stay disabled across a cold boot (ADR 0004); hide the rest from the launcher grid.
 - Ask before disabling any package that is not certain. Ambiguous means keep.
 - Batches of 10 or fewer, appended to the applied list `artefacts\acer-debloat.txt` (ADR 0003).
   After each batch: screenshot, `scripts\health-check.ps1`, and a check from the owner.
@@ -27,9 +32,9 @@ once written, is `RUNBOOK.md`.
 
 Play Store, Play Services, GSF and Google sign-in; every installed streaming app; Chromecast
 (`com.google.android.apps.mediashell`); voice on the mic button (`com.google.android.katniss`);
-HDMI, AV and Live TV (`com.apps.passthrough`, `com.apps.livetv`, `com.apps.atv`, `com.apps.dtv`,
-`com.mk.service.tvmidware`); OTA (`com.apps.ota`, `com.apps.authota`); Settings, setup wizard,
-keyboard, Bluetooth remote pairing. `scripts\health-check.ps1` holds the full list.
+HDMI, AV and Live TV (`com.realtek.tv.passthrough`, `com.realtek.tv`, `com.realtek.dtv`, `com.realtek.tv.atv`,
+`com.mk.service.tvmidware`); OTA (`com.apps.ota`, `com.apps.authota`, `com.realsil.ota`,
+`com.google.android.tv.dfuservice`); Settings, setup wizard, keyboard, Bluetooth remote pairing. `scripts\health-check.ps1` holds the full list.
 
 ## Secrets and identifiers
 
@@ -45,7 +50,7 @@ $py = "$R\tools\venv\Scripts\python.exe"; $tv = "$R\tools\tv.py"; $env:TV_HOST =
 & $py -I $tv 'pm list packages -d --user 0'             # what is disabled
 & $py -I $tv --screenshot "$A\shots\x.png" HOME         # press HOME, capture
 powershell -ExecutionPolicy Bypass -File "$R\tools\disable.ps1" -TvHost 192.168.1.162 "$A\acer-debloat.txt"
-powershell -ExecutionPolicy Bypass -File "$R\tools\restore.ps1" -TvHost 192.168.1.162 "$A\acer-debloat.txt"
+powershell -ExecutionPolicy Bypass -File "$R\tools\restore.ps1" -TvHost 192.168.1.162 "$A\acer-debloat.txt" -Stock com.google.android.apps.tv.launcherx
 & "$P\scripts\health-check.ps1"                         # gate after every batch
 & $py -I "$R\tools\check.py" "$A\acer-debloat.txt"      # after a firmware update; --fix to re-apply
 & $py -I "$R\tools\adb-closed.py" 192.168.1.162         # exit 0 = ADB port closed

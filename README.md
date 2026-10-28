@@ -1,6 +1,6 @@
 # Clean My TV: Acer AR43GR2851VQD
 
-Removes ads, sponsored rows and telemetry from an Acer Android TV and replaces the stock home screen
+Removes ads, sponsored rows and telemetry from an Acer Google TV (Acer R4G, Android 14) and replaces the stock home screen
 with the [CleanYourTV](https://github.com/Gathin23/cleanyourtv) launcher, while the TV keeps working
 as a normal Android TV (Play Store, streaming apps, Chromecast, voice, HDMI/Live TV, OTA updates).
 Nothing is uninstalled; everything is reversible.
@@ -11,7 +11,7 @@ Nothing is uninstalled; everything is reversible.
 | [BOARD.md](BOARD.md) | Kanban of the tickets |
 | [.scratch/acer-tv-cleanup/](.scratch/acer-tv-cleanup/) | PRD (`spec.md`) and tickets (`issues/`) |
 | [CONTEXT.md](CONTEXT.md) | Terms used throughout |
-| [docs/adr/](docs/adr/) | Decisions: the stock launcher stays, the PowerShell scripts, one growing applied list |
+| [docs/adr/](docs/adr/) | Decisions: the stock launcher stays, the PowerShell scripts, one growing applied list, lasting-only debloat on the R4G |
 | [scripts/health-check.ps1](scripts/health-check.ps1) | Pass/fail gate after every batch |
 | `artefacts/` | Backups, lists, restore records, logs, screenshots. **Git-ignored** (it holds device identifiers), except the two debloat lists `acer-debloat-final.txt` (approved) and `acer-debloat.txt` (applied) |
 | `cleanyourtv/` | Clone of the upstream repo (git-ignored; re-clone with the command below) |
