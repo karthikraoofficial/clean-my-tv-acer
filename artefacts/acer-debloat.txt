@@ -2,12 +2,12 @@
 # Do not move or rename: the restore record in ~/.cleanyourtv is keyed by this file's path.
 # Undo: powershell -ExecutionPolicy Bypass -File cleanyourtv\tools\restore.ps1 -TvHost 192.168.1.162 artefacts\acer-debloat.txt -Stock com.google.android.apps.tv.launcherx
 
-# === B1: ad services and telemetry (6) ===
+# === B1: ad services and telemetry (6 applied; 5 kept after the cold boot) ===
 com.android.adservices.api                   # [?] Android ad services (Privacy Sandbox)
 com.android.ondevicepersonalization.services # [?] on-device ad personalisation
 com.android.federatedcompute.services        # [?] federated compute for personalisation
 com.android.tv.feedbackconsent               # [P] feedback/bug-report consent collector (privacy.py: telemetry)
-com.google.android.partnersetup              # [?] Google partner setup, RLZ attribution pings (privacy.py: telemetry)
+# com.google.android.partnersetup            # DROPPED 2026-10-28: re-enabled by the firmware at the first cold boot
 android.autoinstalls.config.scbc.device      # [P] Play auto-installs of partner apps
 
 

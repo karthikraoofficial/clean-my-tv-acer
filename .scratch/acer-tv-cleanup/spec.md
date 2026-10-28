@@ -110,3 +110,5 @@ read-only discovery ran. Changes:
 - The health check's must-keep set now uses this TV's real package names (`com.realtek.tv.passthrough`,
   `com.realtek.tv`, the tuner inputs, and the key handlers).
 - New ADR 0004; ADR 0001 updated.
+
+**2026-10-28: debloat done (ticket 05).** 9 packages are disabled and survive a cold boot. partnersetup turned out to be boot-reset and was dropped. The PRD's user stories 14–17 are met for the debloat half; next is the launcher (ticket 06).

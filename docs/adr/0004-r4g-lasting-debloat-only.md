@@ -22,7 +22,8 @@ list, accepting that part of it comes back at each cold boot. They chose the fir
 
 ## Consequences
 
-- The disabled set is smaller (10 packages) than the AR55's 28. SCBC's gdpr agent, Google feedback, the
+- The disabled set is smaller than the AR55's 28: **9 packages** after our own cold boot showed
+  `com.google.android.partnersetup` is on the firmware's reset list too _(Updated 2026-10-28)_. SCBC's gdpr agent, Google feedback, the
   demo stickers, SCast and FastCast keep running.
 - `check.py` after a cold boot should report no drift. If it does, the list is wrong, not the TV.
 - Restore passes the Google TV launcher: `restore.ps1 ... -Stock com.google.android.apps.tv.launcherx`.

@@ -5,11 +5,11 @@ A ticket moves to **Ready** when every ticket in its `Blocked by:` line is Done.
 
 | Backlog | Ready | In progress | Done |
 |---|---|---|---|
-| | | 05 Debloat: B1+B2 done, cold-boot check pending | 01 Prerequisites and workspace (e1d7da6) |
+| | 06 Launcher | | 01 Prerequisites and workspace (e1d7da6) |
 | | | | 02 Connect and probe: R4G, re-planned (c9b6244) |
 | | | | 03 Backup and baseline (76ba96b) |
 | | | | 04 Final list approved (v2) |
-| 06 Launcher (← 01, 05) | | | |
+| | | | 05 Debloat: 9 disabled, cold-boot verified |
 | 07 Verify (← 06) | | | |
 | 08 Harden and runbook (← 07) | | | |
 
