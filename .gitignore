@@ -1,0 +1,9 @@
+# Device identifiers (serials, Wi-Fi names, account data in settings dumps): never committed
+artefacts/*
+# ...except the debloat lists, which hold only package names
+!artefacts/acer-debloat-final.txt
+!artefacts/acer-debloat.txt
+# Upstream clone (has its own git history; re-clone per README)
+cleanyourtv/
+# Local Claude settings
+.claude/settings.local.json

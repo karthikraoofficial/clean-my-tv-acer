@@ -1,0 +1,47 @@
+# DRAFT: approved list for Acer AR43GR2851VQD. NOT APPROVED YET (ticket 04).
+# Source: upstream examples/acer-ar55ar2851udpro/debloat.txt (AR55, SCBC R4, Realtek rtd2851m, Android TV 14,
+# build UKR1.260308), adjusted with the owner's answers of 2026-10-28. Discovery (ticket 02) may add lines
+# to B4 and must confirm every line exists on this TV.
+#
+# Applied one batch at a time by appending a section to artefacts/acer-debloat.txt (ADR 0003).
+# Disable only (pm disable-user --user 0). Undo: cleanyourtv\tools\restore.ps1 artefacts\acer-debloat.txt
+#
+# KEPT on the owner's answers: com.google.android.youtube.tv (YouTube, the remote's YouTube key),
+#   com.google.android.youtube.tvmusic (YouTube Music), com.apps.function.audiolink (Audio Link),
+#   com.google.android.marvin.talkback (TalkBack: owner unsure, so kept).
+# KEPT as must-keep: Play Store/Services/GSF, katniss, mediashell, tvlauncher, setupwraith, partnercustomizer,
+#   passthrough, livetv, atv, dtv, tvmidware, OTA (ota, authota), the key handlers, every installed app.
+# NOT TOUCHED: com.apps.factory.ui, com.realtek.factorytools (never started), com.apps.biz.ds, com.apps.biz.mt,
+#   com.seraphic.hbbtv.app, com.apps.usbmediaplayer.
+
+# === B1: telemetry and ad services (6) ===
+com.apps.function.gdpr                       # SCBC data-consent agent
+com.google.android.feedback                  # Google feedback reporter
+com.android.tv.feedbackconsent               # feedback consent
+com.android.adservices.api                   # Android ad services
+com.android.ondevicepersonalization.services # on-device ad personalisation
+com.android.federatedcompute.services        # federated compute for personalisation
+
+# === B2: ads, recommendation rows, demo (7) ===
+com.apps.mk.wd                               # boot receiver with ClickAd/ClickApp/ClickChannel
+android.autoinstalls.config.scbc.device      # Play auto-installs of partner apps
+com.google.android.tvrecommendations         # sponsored and recommendation rows on the stock Home
+com.apps.eshow                               # in-store demo / promo
+com.apps.esticker                            # demo sticker overlay
+com.mk.tv.meeting.service                    # digital-signage service
+com.apps.tvmanager                           # TV manager / cleaner
+
+# === B3: not needed on this TV (9) ===
+com.android.healthconnect.controller         # Health Connect
+com.android.health.connect.backuprestore     # Health Connect backup
+com.apps.wifihotspot                         # TV as a Wi-Fi hotspot
+com.mk.tv.timeclock                          # world clock
+com.google.android.play.games                 # Play Games
+com.google.android.videos                    # Play Movies & TV (owner: disable)
+com.mk.tv.networkspeed                       # network speed test
+com.android.dreams.basic                     # "Colors" screensaver (owner: disable; Backdrop stays)
+com.google.android.partnersetup              # Google partner setup / RLZ: last in B3, Play Store checked after
+
+# === B4: screen mirroring (owner uses only Chromecast) + discovery extras (to be filled) ===
+com.creative.fastscreen.tv                   # FastCast Miracast receiver
+com.apps.scast                               # SCast casting receiver
