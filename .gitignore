@@ -7,3 +7,4 @@ artefacts/*
 cleanyourtv/
 # Local Claude settings
 .claude/settings.local.json
+!artefacts/config.xml
