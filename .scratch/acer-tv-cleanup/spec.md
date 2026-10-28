@@ -34,7 +34,10 @@ and the setup wizard stay enabled (ADR 0001). Verify everything, close ADB, and 
 - **If the probe shows the Google TV variant:** stop and re-plan (owner's answer). _(Updated: it did. Re-plan
   chosen: lasting debloat + launcher via the Home redirect, ADR 0004.)_
 - **Tracker:** local markdown plus `git init`, mirrored to a **private** GitHub repo. `artefacts/`
-  (device identifiers) and the `cleanyourtv/` clone are git-ignored (owner's answer).
+  (device identifiers) and the `cleanyourtv/` clone are git-ignored (owner's answer). _(Updated
+  2026-10-28: the repo is now **public**, at the owner's request, after a scan of every tracked file
+  and the full history found no device identifiers. README has before/after screenshots; the account
+  picture in the "before" shot is blurred.)_
 - **Power-on screen:** Home. If the firmware opens Live TV by itself at power-on, set
   `power_on_home` (needs HomeKeyService, which ADR 0001 already enables). Never `boot_to_live_tv`.
 - **Optional extras:** none (no Private DNS, no theme, no clock screensaver).
