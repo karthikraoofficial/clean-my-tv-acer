@@ -1,6 +1,6 @@
 # 06: CleanYourTV launcher on Home
 
-Status: in-progress
+Status: resolved
 Type: task
 Blocked by: 01, 05
 
@@ -13,7 +13,7 @@ Phase 5, per ADR 0001.
 - [x] Browsehere (`com.tcl.browser`) first in the grid (`tile_menu` Move, or the grid order)
 - [x] Real buttons: Input, Settings, YouTube, mic, Back, volume hold-to-ramp
 - [x] Home pressed while on an HDMI input: note whether launcherx flashes first (#1121 doesn't cover HDMI)
-- [ ] After a cold boot, Home is still CleanYourTV. Power-on = Home: if Live TV opens by itself, set `power_on_home`
+- [x] After a cold boot, Home is still CleanYourTV. Power-on = Home: if Live TV opens by itself, set `power_on_home`
 
 ## Comments
 
@@ -39,3 +39,5 @@ Phase 5, per ADR 0001.
 - **Reinstall gotcha, confirmed twice:** after `pm install -r`, the helper's process can start against the old APK path ("Failed to find OatDexFile"). It then shows as bound with no key filter (`A11yInputFilter` empty) and Home stays on launcherx. Fix: `am force-stop com.gathin.tvhome`, then re-enable HomeKeyService. Also: on this TV a force-stop sets `enabled_accessibility_services` to null. Manual recovery is TV Settings → Accessibility → "Home button" → On. `restore_key_services` was not enabled: it only acts once CleanYourTV is running, which a dead helper prevents.
 - After the clean restart: `KeyboardInterceptor` is active, and Home from Netflix resumes launcherx at 18:00:54.908 and tvhome at 18:00:55.219 → **0.31 s** of Google TV (from 1.6 s originally).
 - A system restart happened at about 17:46 (`system_server` PID 894 → 903, boot_count 526). The redirect worked after it (17:51 presses: 0.25–0.56 s).
+
+**2026-10-28, closed in 8cdb5a9.** The owner confirmed it's "much improved" after Snappier. A cold boot (by the owner) and a reboot (ticket 07) both land on CleanYourTV. Power-on: Home, with no Live TV auto-open seen, so `power_on_home` isn't needed.

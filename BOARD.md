@@ -5,12 +5,12 @@ A ticket moves to **Ready** when every ticket in its `Blocked by:` line is Done.
 
 | Backlog | Ready | In progress | Done |
 |---|---|---|---|
-| | | 06 Launcher: installed, Home redirect works; remote + cold boot pending | 01 Prerequisites and workspace (e1d7da6) |
+| | | 07 Verify: automated part done; owner checklist pending | 01 Prerequisites and workspace (e1d7da6) |
 | | | | 02 Connect and probe: R4G, re-planned (c9b6244) |
 | | | | 03 Backup and baseline (76ba96b) |
 | | | | 04 Final list approved (v2) |
 | | | | 05 Debloat: 9 disabled, cold-boot verified |
-| 07 Verify (← 06) | | | |
+| | | | 06 Launcher (8cdb5a9) |
 | 08 Harden and runbook (← 07) | | | |
 
 ## Blocking graph
