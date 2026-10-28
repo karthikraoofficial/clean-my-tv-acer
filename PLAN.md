@@ -4,6 +4,8 @@
 
 ## Updates since approval (2026-10-28)
 
+**Final status (2026-10-28): all phases complete.** See RUNBOOK.md and BOARD.md. The PRD is closed. Beyond the plan, after owner feedback: `home_long_press_home` (Google TV flash 1.6 s → 0.3 s), `focus_overshoot=false` and 0.5× animation scales (smoothness). Boot time was investigated: cold boot is about 48 s (firmware), standby about 2 s. No change made.
+
 ### _(Updated)_ Re-plan for the Acer R4G (Google TV): this overrides the AR55 details below
 
 The probe (ticket 02) showed model `R4G`, device `R4_GTV`, fingerprint `ACER/ACER_NFF/R4_GTV:14/UKR1.260308/5597`, which is exactly the TV in upstream `docs/devices/acer-r4g.md`. The owner chose **a lasting debloat plus the launcher**. Changes per phase:

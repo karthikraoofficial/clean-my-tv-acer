@@ -43,6 +43,10 @@ HDMI, AV and Live TV (`com.realtek.tv.passthrough`, `com.realtek.tv`, `com.realt
 
 ## Commands (PowerShell, from the project root)
 
+Debugging on the TV was switched **off** on 2026-10-28 (port 5555 closed). Re-enable it first: RUNBOOK.md,
+"Re-enable debugging". After any launcher reinstall, force-stop `com.gathin.tvhome` and re-enable
+HomeKeyService (RUNBOOK.md, "If Home starts opening Google TV again").
+
 ```powershell
 $P = (Get-Location).Path; $R = "$P\cleanyourtv"; $A = "$P\artefacts"
 $py = "$R\tools\venv\Scripts\python.exe"; $tv = "$R\tools\tv.py"; $env:TV_HOST = '192.168.1.162'

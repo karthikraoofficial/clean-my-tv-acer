@@ -15,7 +15,7 @@ Nothing is uninstalled; everything is reversible.
 | [scripts/health-check.ps1](scripts/health-check.ps1) | Pass/fail gate after every batch |
 | `artefacts/` | Backups, lists, restore records, logs, screenshots. **Git-ignored** (it holds device identifiers), except the two debloat lists `acer-debloat-final.txt` (approved) and `acer-debloat.txt` (applied) |
 | `cleanyourtv/` | Clone of the upstream repo (git-ignored; re-clone with the command below) |
-| `RUNBOOK.md` | Written at the end: restore, after-update check, re-enabling debugging |
+| [RUNBOOK.md](RUNBOOK.md) | **Start here for maintenance:** restore, after-update check, Home-helper recovery, changing the dock, re-enabling debugging |
 
 ## Setup on a new Windows laptop
 
@@ -30,4 +30,4 @@ platform 34, build-tools 34.0.0 and platform-tools. See `PLAN.md`, Prerequisites
 
 ## Status
 
-See [BOARD.md](BOARD.md).
+**Done, 2026-10-28.** 9 ad/telemetry packages disabled (they survive cold boots), CleanYourTV on Home, owner-verified, and ADB closed afterwards. See [BOARD.md](BOARD.md) and [RUNBOOK.md](RUNBOOK.md).

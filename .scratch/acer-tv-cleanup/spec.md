@@ -1,6 +1,6 @@
 # PRD: Clean the Acer TV, keep it a normal Google TV
 
-Status: ready-for-human
+Status: resolved (closed 2026-10-28: every ticket shipped)
 Owner: Karthik (on the TV) + Claude Code (laptop side)
 Plan: `PLAN.md`. Tickets: `issues/`. Board: `BOARD.md`.
 
@@ -114,3 +114,15 @@ read-only discovery ran. Changes:
 **2026-10-28: debloat done (ticket 05).** 9 packages are disabled and survive a cold boot. partnersetup turned out to be boot-reset and was dropped. The PRD's user stories 14–17 are met for the debloat half; next is the launcher (ticket 06).
 
 **2026-10-28: owner follow-ups after the launcher went in.** (1) Google TV flashes on Home: it is started by a root firmware process, so it can be shortened (1.6 s → ~0.8 s with `home_long_press_home`) but not removed without root, which is out of scope. (2) Boot takes 48 s: about 29 s is firmware/Android core, which we can't touch. `boot_count=523` shows the TV does a full boot on every power-on, so the fix is a power setting (standby instead of shutdown), not more debloating. Pending the owner's check.
+
+**2026-10-28: PRD closed.** All 8 tickets are resolved. Outcome against the user stories:
+- 1–4: CleanYourTV on Home, with the 7-app dock in order, Browsehere first in the grid, and new apps appearing.
+- 5–13: Play, the apps, Cast, voice, HDMI/Live TV, remote, settings and OTA all verified by the owner.
+- 14: 9 ad/telemetry packages off (boot-reset ones hidden instead).
+- 15–16: restore record before the first change; batches with health checks.
+- 17: survives cold boot and reboot.
+- 18: ADB closed (`adb-closed.py` exit 0).
+- 19: RUNBOOK.md.
+- 20: everything under `artefacts/`.
+
+Known limits: Google TV's home shows about 0.3 s on Home and about 4 s at boot (started by a root firmware process). Cold boot takes about 48 s (firmware); standby wakes in about 2 s.

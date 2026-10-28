@@ -30,3 +30,6 @@ Home press, HomeKeyService sends the TV to CleanYourTV (upstream #1116, fixed by
   That's accepted; check it in ticket 07.
 - `am force-stop com.gathin.tvhome` turns the helper off until it is re-enabled (Settings → Accessibility).
 - Restore is simpler: the stock launcher never left.
+- _(Added 2026-10-28)_ `home_long_press_home=true`: HomeKeyService consumes the Home key and opens CleanYourTV
+  on key-up. A root firmware process still starts launcherx's HOME intent (`from uid 0`), so Google TV shows for
+  about 0.3 s. That is the floor without root. A held Home no longer gives Google TV's long-press action.

@@ -14,7 +14,7 @@ Terms used in the plan, tickets, scripts and runbook.
 | **Home guard** | The upstream scripts' rule that the app owning Home is never disabled until another launcher answers HOME. |
 | **Stock launcher** | `com.google.android.apps.tv.launcherx` on this TV (Google TV R4G); `tvlauncher` on the Android TV AR55. Stays enabled (ADR 0001). |
 | **New launcher** | CleanYourTV, package `com.gathin.tvhome`, built from `cleanyourtv/launcher`. |
-| **HomeKeyService redirect** | The new launcher's accessibility helper (`HomeKeyService`) plus `stock_home_redirect`: when the stock home comes up, the TV is sent to the new launcher. This is how the Home button reaches CleanYourTV on this platform. |
+| **HomeKeyService redirect** | The new launcher's accessibility helper (`HomeKeyService`) plus `stock_home_redirect`: when the stock home comes up, the TV is sent to the new launcher. This is how the Home button reaches CleanYourTV on this platform. With `home_long_press_home`, it also consumes the Home key itself. A force-stop or reinstall of the launcher switches it off (RUNBOOK.md). |
 | **Android TV variant / Google TV variant** | Acer R4/AR55 (device `R4`, `tvlauncher`) vs R4G (device `R4_GTV`, `launcherx`). **This TV is the R4G.** |
 | **Boot-reset package** | A package the R4G firmware re-enables at every cold boot (its `FallbackHome` runs `SetPmodServiceJob` over a hard-coded list). Not listed; hidden from the grid if it has an icon (ADR 0004). |
 | **[P] / [?]** | Tags in the approved list: [P] seen to persist across cold boots on the R4G; [?] not on either list in the upstream note, confirmed by our own cold boot. |

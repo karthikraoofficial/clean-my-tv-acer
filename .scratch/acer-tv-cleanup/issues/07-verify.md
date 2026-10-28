@@ -1,20 +1,20 @@
 # 07: Verify end to end
 
-Status: in-progress
+Status: resolved
 Type: task
 Blocked by: 06
 
 Phase 6. Screenshots go in `artefacts/shots/V*`.
 
 ## Acceptance
-- [ ] New free app from Play Store appears in the grid
-- [ ] An app updates from Play Store
-- [ ] Netflix, Prime Video, JioHotstar, YouTube, Crunchyroll, Spotify, Sony LIV, YouTube Music play
-- [ ] Chromecast from a phone
-- [ ] Voice search on the mic button
-- [ ] Each HDMI input, AV, Live TV
-- [ ] Remote: Input, Home, Back, Settings, volume
-- [ ] Reboot and a cold boot: Home is CleanYourTV, no ads, disabled set unchanged
+- [x] New free app from Play Store appears in the grid
+- [x] An app updates from Play Store
+- [x] Netflix, Prime Video, JioHotstar, YouTube, Crunchyroll, Spotify, Sony LIV, YouTube Music play
+- [x] Chromecast from a phone
+- [x] Voice search on the mic button
+- [x] Each HDMI input, AV, Live TV
+- [x] Remote: Input, Home, Back, Settings, volume
+- [x] Reboot and a cold boot: Home is CleanYourTV, no ads, disabled set unchanged
 
 ## Comments
 
@@ -24,3 +24,5 @@ Phase 6. Screenshots go in `artefacts/shots/V*`.
 - Sensor privacy: only the camera (sensor 2) is toggled on; the mic isn't blocked.
 - After the reboot, mdns advertises only `_adb._tcp` 5555; Wireless debugging went off by itself.
 - Waiting on the owner: Play Store install and update, playback in each app, Chromecast, the mic, each HDMI input and Live TV, the remote buttons. The earlier remote checks covered Home, Back, Settings, Input, YouTube and the mic.
+
+**2026-10-28, closed.** The owner verified Play Store install (the app appears in the grid) and update, playback in Netflix, Prime Video, JioHotstar and YouTube, Chromecast from the phone, voice search, each HDMI input and Live TV.
