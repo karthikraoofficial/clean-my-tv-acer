@@ -1,0 +1,18 @@
+# APPLIED list for Acer R4G at 192.168.1.162. Grows one batch at a time from acer-debloat-final.txt (ADR 0003).
+# Do not move or rename: the restore record in ~/.cleanyourtv is keyed by this file's path.
+# Undo: powershell -ExecutionPolicy Bypass -File cleanyourtv\tools\restore.ps1 -TvHost 192.168.1.162 artefacts\acer-debloat.txt -Stock com.google.android.apps.tv.launcherx
+
+# === B1: ad services and telemetry (6) ===
+com.android.adservices.api                   # [?] Android ad services (Privacy Sandbox)
+com.android.ondevicepersonalization.services # [?] on-device ad personalisation
+com.android.federatedcompute.services        # [?] federated compute for personalisation
+com.android.tv.feedbackconsent               # [P] feedback/bug-report consent collector (privacy.py: telemetry)
+com.google.android.partnersetup              # [?] Google partner setup, RLZ attribution pings (privacy.py: telemetry)
+android.autoinstalls.config.scbc.device      # [P] Play auto-installs of partner apps
+
+
+# === B2: ad-click service and unused features (4) ===
+com.apps.mk.wd                               # [P] boot receiver with ClickAd/ClickApp/ClickChannel/ClickVideo activities
+com.apps.wifihotspot                         # [P] TV as a Wi-Fi hotspot
+com.android.healthconnect.controller         # [?] Health Connect
+com.android.health.connect.backuprestore     # [?] Health Connect backup

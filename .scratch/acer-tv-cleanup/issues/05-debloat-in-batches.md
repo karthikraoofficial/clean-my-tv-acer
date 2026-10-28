@@ -1,16 +1,21 @@
 # 05: Debloat in batches
 
-Status: needs-triage
+Status: in-progress
 Type: task
 Blocked by: 03, 04
 
 Phase 4. For each batch: append it to `artefacts/acer-debloat.txt`, run `disable.ps1`, copy the record, take a screenshot, run the health check, and get the owner's OK. Then sync, wait 15 s, reboot, cold boot, and compare.
 
 ## Acceptance
-- [ ] B1 ad services and telemetry (6)
-- [ ] B2 ad-click service and unused features (4)
-- [ ] _(Updated: B3/B4 dropped for the R4G, ADR 0004)_
+- [x] B1 ad services and telemetry (6)
+- [x] B2 ad-click service and unused features (4)
+- [x] _(Updated: B3/B4 dropped for the R4G, ADR 0004)_
 - [ ] After a **cold boot** (power cable out 30 s), `check.py artefactscer-debloat.txt` reports no drift. Any [?] package that came back is re-enabled, removed from the applied list, and noted in the list header.
 - [ ] No `RecoveryActivity` in logcat; launcherx still owns Home
 
 ## Comments
+
+**2026-10-28: both batches applied, waiting on the owner's cold boot.**
+- B1: `disable.ps1` disabled 6, all `disabled-user`. Health check with Netflix: ALL PASSED. Play Store loaded signed in (`shots/B1-*.png`, `logs/B1-*.log`).
+- B2: 4 names were appended; `disable.ps1` added them to the same record and disabled them. Health check with Prime Video: ALL PASSED (`shots/B2-*.png`, `logs/B2-*.log`).
+- `sync`, then 15 s. Next: the owner pulls the power cable for 30 s, then `check.py`.

@@ -1,5 +1,5 @@
-# DRAFT v2: approved list for Acer AR43GR2851VQD = Acer R4G (MOKA R4_GTV, Google TV 14, build UKR1.260308/5597)
-# NOT APPROVED YET (ticket 04). Re-planned 2026-10-28 after the probe: lasting debloat only (owner's choice).
+# APPROVED v2 (owner, 2026-10-28): approved list for Acer AR43GR2851VQD = Acer R4G (MOKA R4_GTV, Google TV 14, build UKR1.260308/5597)
+# Approved in ticket 04. Re-planned 2026-10-28 after the probe: lasting debloat only (owner's choice).
 #
 # Why short: on R4G firmware com.android.tv.settings/.system.FallbackHome runs SetPmodServiceJob at every COLD
 # boot (power cut, plug pulled; not standby) and re-enables a hard-coded list of ~60 packages
