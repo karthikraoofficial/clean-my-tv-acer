@@ -5,12 +5,21 @@ with the [CleanYourTV](https://github.com/Gathin23/cleanyourtv) launcher, while 
 as a normal Android TV (Play Store, streaming apps, Chromecast, voice, HDMI/Live TV, OTA updates).
 Nothing is uninstalled; everything is reversible.
 
+## Screenshots
+
+| Before: stock Google TV Home | After: CleanYourTV Home (after a cold boot) |
+|---|---|
+| ![Stock Google TV Home with sponsored banner and recommendation rows](docs/screenshots/before-google-tv-home.jpg) | ![CleanYourTV Home with clock, quick actions and an app dock, no ads](docs/screenshots/after-cleanyourtv-home.jpg) |
+
+The account picture in the "before" shot is blurred.
+
 | File | What it is |
 |---|---|
 | [PLAN.md](PLAN.md) | The phased plan, with commands, success checks and rollbacks |
 | [BOARD.md](BOARD.md) | Kanban of the tickets |
 | [.scratch/acer-tv-cleanup/](.scratch/acer-tv-cleanup/) | PRD (`spec.md`) and tickets (`issues/`) |
 | [CONTEXT.md](CONTEXT.md) | Terms used throughout |
+| [docs/screenshots/](docs/screenshots/) | Before/after Home screenshots for this README |
 | [docs/adr/](docs/adr/) | Decisions: the stock launcher stays, the PowerShell scripts, one growing applied list, lasting-only debloat on the R4G |
 | [scripts/health-check.ps1](scripts/health-check.ps1) | Pass/fail gate after every batch |
 | `artefacts/` | Backups, lists, restore records, logs, screenshots. **Git-ignored** (it holds device identifiers), except the two debloat lists `acer-debloat-final.txt` (approved) and `acer-debloat.txt` (applied) |
