@@ -87,3 +87,7 @@ taking the Home button through its Home-button helper while the stock launcher s
 
 The source of truth is upstream `examples/acer-ar55ar2851udpro/` (the AR55, Android TV 14, build
 UKR1.260308) and `docs/devices/acer-r4g.md` (the Google TV variant).
+
+## Comments
+
+**2026-10-28: re-plan needed (ticket 02).** The TV is the Google TV variant (`R4_GTV`, launcherx), not the Android TV AR55 this plan was built on. The R4G firmware re-enables about 20 packages at every cold boot, and launcherx and setupwraith must both stay enabled. ADR 0001's approach still applies, but with `stock_home_redirect = com.google.android.apps.tv.launcherx`. The debloat list and the restore's stock-launcher argument must change. Waiting on the owner's choice of re-plan before amending the PRD.
