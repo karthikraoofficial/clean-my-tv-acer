@@ -112,3 +112,5 @@ read-only discovery ran. Changes:
 - New ADR 0004; ADR 0001 updated.
 
 **2026-10-28: debloat done (ticket 05).** 9 packages are disabled and survive a cold boot. partnersetup turned out to be boot-reset and was dropped. The PRD's user stories 14–17 are met for the debloat half; next is the launcher (ticket 06).
+
+**2026-10-28: owner follow-ups after the launcher went in.** (1) Google TV flashes on Home: it is started by a root firmware process, so it can be shortened (1.6 s → ~0.8 s with `home_long_press_home`) but not removed without root, which is out of scope. (2) Boot takes 48 s: about 29 s is firmware/Android core, which we can't touch. `boot_count=523` shows the TV does a full boot on every power-on, so the fix is a power setting (standby instead of shutdown), not more debloating. Pending the owner's check.

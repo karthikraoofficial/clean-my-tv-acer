@@ -242,7 +242,7 @@
          there. HomeKeyService (HOME_KEY_SERVICE=1) then takes the Home key itself and opens Home on release. Needs
          key_filter, so held keys such as Volume Up/Down stop repeating (confirmed on that Philips; single presses
          still step). A theme's config.json can set it too. Off by default. -->
-    <bool name="home_long_press_home">false</bool>
+    <bool name="home_long_press_home">true</bool>
 
     <!-- Show the Solar Hijri (Shamsi) date used in Iran and Afghanistan, e.g. "27 Mehr 1405", above the
          Gregorian date. -->
